@@ -1,0 +1,63 @@
+<html ng-app="TechTree">
+<head>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="techtree.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<style>
+	.panel {
+		transition:0.4s ease all;
+		opacity:0.4;
+	}
+	.panel.on-add {
+	}
+	.panel.on {
+		opacity:1;
+	}
+	.panel.on-remove {
+	}
+</style>
+</head>
+<body ng-controller="TechTreeController" ng-init="resolveDependencies()">
+<!--div class="container">
+<div class="row"-->
+<div ng-repeat="dependencyGroup in techTree" style="float:left; margin-left:20px;">
+	<div ng-repeat="techItem in dependencyGroup">
+		<div style="width:300px" class="panel panel-primary disabled" ng-class="{on:techItem.active}">
+			<div class="panel-heading">
+				<h3 class="panel-title panel-title">{{techItem.title}} <span ng-if="techItem.costs>0" class="badge">{{techItem.costs}}</span></h3>
+			</div>
+			<div class="panel-body">
+				<div>Fortschritt</div>
+				<div class="progress" ng-init="progress=techItem.progress*100">
+					  <div class="progress-bar progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+						<span>{{progress}}%</span>
+					  </div>
+				</div>
+				<div ng-if="techItem.bonuses.length>0">
+					<div>Boni</div>
+					<ul class="list-group">
+						<li ng-repeat="bonus in techItem.bonuses" class="list-group-item list-group-item-success">{{bonus.title}}</li>
+					</ul>
+				</div>
+				<div ng-if="techItem.leadsTo">
+					<div>Führt zu</div>
+					<ul class="list-group">
+						<li class="list-group-item" ng-class="listItemClassForTechItem(value,false)" ng-repeat="(key, value) in techItem.leadsTo">{{value.title}}</li>
+					</ul>
+				</div>
+				<div ng-if="techItem.dependencies">
+					<div>Hängt ab von</div>
+					<ul class="list-group" ng-mouseover="showDependencies(techItem)" ng-mouseleave="showAll()">
+						<li class="list-group-item" ng-class="listItemClassForTechItem(value,true)" ng-repeat="(key, value) in techItem.dependencies">{{value.title}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/div>
+</div-->
+</body>
+</html>
