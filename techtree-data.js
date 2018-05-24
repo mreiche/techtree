@@ -25,6 +25,9 @@ var bonuses = {
     },
     "money": {
 			"title": "Einnahmen",
+    },
+    "privacy": {
+        "title":"Datenschutz",
     }
 };
 
@@ -45,7 +48,7 @@ var techItems = {
 		},
 		"dsgvo": {
 			"title": "DSGVO",
-			"bonuses": ["features"]
+			"bonuses": ["privacy"]
 		},
 		"article-ui": {
 			"title": "Artikelverwaltung UI",
