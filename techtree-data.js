@@ -22,58 +22,50 @@ var bonuses = {
     },
     "growth":{
             "title": "Wachstum"
+    },
+    "ux": {
+        "title": "Besseres Nutzererlebnis",
+    },
+    "money": {
+        "title": "Einnahmen",
     }
-}
+};
+
 var techItems = {
-    "v44": {
-            "title": "v4.4",
-            "costs": 0,
-            "progress": 1,
+    "ci": {
+        "title": "Continues Integration",
+        "bonuses": ["stability"]
+    },
+    "treats": {
+        "title":"Abbau Technischer Schulden",
+        "dependsOn": ["ci"]
+    },
+    "v55": {
+            "title": "Myty 5.5",
+            "costs": 4,
+            "progress":0.99,
             "bonuses": ["performance", "clean-code"]
     },
-    "v45": {
-            "title": "v4.5",
-            "progress": 0.9,
-            "costs":4,
-            "dependsOn": ["v44"],
-            "bonuses": ["performance", "clean-code"]
+    "v52": {
+        "title": "Myty 5.2 Feature Freeze",
+        "progress": 0.9,
+        "dependsOn":["formmanager-widgets"]
     },
-    "bootstrap":{
-            "title": "Bootstrap-Theme",
-            "dependsOn": ["v45"],
-            "costs":4,
-            "bonuses":["standards"]
+    "formmanager-widgets": {
+        "title": "Formular-Manager-Widgets",
+        "progress":0,
+        "bonuses": []
     },
-    "new-inline-editor":{
-            "title": "Neuer Inline-Editor",
-            "progress":0.05,
-            "dependsOn": ["v45"],
-            "bonuses":["user-experience", "features"],
-            "costs":30
+    "ux-content": {
+        "title": "UX Inhalte bearbeiten",
+        "dependsOn": ["topics"]
     },
-    "new-ui":{
-            "title": "Neues Interface",
-            "dependsOn": ["bootstrap"],
-            "bonuses":["user-experience"]
+    "navigation": {
+        "title": "Neue Navigation",
+        "dependsOn": ["v55"],
     },
-    "continues-delivery":{
-            "title": "Continues Delivery",
-            "dependsOn": ["v45"],
-            "bonuses":["standards"]
-    },
-    "horizontal-scaling":{
-            "title": "Horizontale Skalierung",
-            "dependsOn": ["v45", "continues-delivery"],
-            "bonuses": ["redundancy","growth"]
-    },
-    "ab-tests":{
-            "title": "AB-Tests",
-            "dependsOn":["horizontal-scaling"],
-            "bonuses": ["user-experience"]
-    },
-    "geo-redundance":{
-            "title": "GEO-Redundanz",
-            "dependsOn":["horizontal-scaling"],
-            "bonuses": ["redundancy","growth"]
+    "topics": {
+        "title": "Topics",
+        "dependsOn": ["navigation"]
     }
 };
