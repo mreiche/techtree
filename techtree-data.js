@@ -26,6 +26,9 @@ var bonuses = {
     "money": {
 			"title": "Einnahmen",
     },
+    "money-saving": {
+        "title":"Ausgaben sparen",
+    },
     "privacy": {
         "title":"Datenschutz",
     }
@@ -64,13 +67,13 @@ var techItems = {
 			"template-compat": {
 				"title": "Template Kompatibilitäts Funktionen",
 				"progress": 1,
-				"bonuses": []
+				"bonuses": ["standards","money-saving","performance"]
 			},
 			"static-assets": {
 				"title": "Statische Inhalte",
                 "costs": 2,
 				"progress": 0.8,
-				"bonuses": ["features"]
+				"bonuses": ["money-saving","performance"]
 			},
 			"fm-widgets": {
 				"title": "Formular-Manager-Widgets",
