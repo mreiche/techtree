@@ -37,6 +37,16 @@ angular.module('TechTree', [])
 			techItem.dependencies[i].active=true;
 		}
 		techItem.active = true;
+	}	
+	$scope.showLeadsTo = function(techItem) {
+		var i;
+		for (i in $scope.techItems) {
+			$scope.techItems[i].active=false;
+		}
+		for (i in techItem.leadsTo) {
+			techItem.leadsTo[i].active=true;
+		}
+		techItem.active = true;
 	}
 	$scope.showAll = function() {
 		var i;
