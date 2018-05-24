@@ -18,12 +18,19 @@
 	}
 	.panel.on-remove {
 	}
+    .tech-step {
+        float:left;
+        margin-right:20px;
+        background-color: darkgray;
+        padding: 20px;
+    }
 </style>
 </head>
 <body ng-controller="TechTreeController" ng-init="resolveDependencies()">
 <!--div class="container">
 <div class="row"-->
-<div ng-repeat="dependencyGroup in techTree" style="float:left; margin-left:20px;">
+<div ng-repeat="dependencyGroup in techTree" class="tech-step">
+    <h1>Step {{$index+1}}</h1>
 	<div ng-repeat="techItem in dependencyGroup">
 		<div style="width:300px" class="panel panel-primary disabled" ng-class="{on:techItem.active}">
 			<div class="panel-heading">
