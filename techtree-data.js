@@ -29,37 +29,19 @@ var bonuses = {
 };
 
 var techItems = {
-    "treats": {
-        "title":"Abbau Technischer Schulden",
-        "dependsOn": ["sq","ci","cd","ut"]
-    },
-		"sq": {
-			"title": "SonarQube",
-			"bonuses": ["stability","clean-code"]
-		},
-		"ci": {
-			"title": "Continuous Integration GitLab",
-			"bonuses": ["stability"]
-		},
-		"cd": {
-			"title": "Continuous Deployment",
-			"bonuses": ["performance"]
-		},
-		"ut": {
-			"title": "Unit Testing",
-			"bonuses": ["stability"]
-		},
 	"v56": {
         "title":"myty 5.6 (Shop)",
-        "dependsOn": ["bundles","coupons","dsgvo","article-ui"]
+        "dependsOn": ["dsgvo", "v55"]
     },
 		"bundles": {
 			"title": "Bundles",
-			"bonuses": ["standards"]
+			"bonuses": ["standards"],
+            "dependsOn": ["v56"],
 		},
 		"coupons": {
 			"title": "Gutscheine/Rabatte",
-			"bonuses": ["standards"]
+			"bonuses": ["standards"],
+            "dependsOn": ["v56"],
 		},
 		"dsgvo": {
 			"title": "DSGVO",
@@ -67,13 +49,9 @@ var techItems = {
 		},
 		"article-ui": {
 			"title": "Artikelverwaltung UI",
+            "dependsOn": ["v56"],
 			"bonuses": ["ux"]
 		},
-    "cms": {
-        "title": "Inhaltsverwaltung",
-        "bonuses": ["ux", "performance"],
-		"dependsOn": ["v52eol","v55","ui-ux"]
-    },
 		"v52eol": {
 			"title": "Myty 5.2 EOL",
 			"progress": 0.9,
@@ -82,16 +60,18 @@ var techItems = {
 		},
 			"template-compat": {
 				"title": "Template Kompatibilitäts Funktionen",
-				"progress": 0,
+				"progress": 1,
 				"bonuses": []
 			},
 			"static-assets": {
 				"title": "Statische Inhalte",
-				"progress": 1,
+                "costs": 2,
+				"progress": 0.8,
 				"bonuses": ["features"]
 			},
 			"fm-widgets": {
 				"title": "Formular-Manager-Widgets",
+                "costs": 4,
 				"progress": 0.15,
 				"bonuses": ["features"]
 			},
@@ -103,15 +83,18 @@ var techItems = {
 			"dependsOn": ["versioning","globaltexts-review"]
 		},
 			"versioning": {
+                "costs": 1,
 				"title": "Versionierung Content",
 				"bonuses": ["features"]
 			},
 			"globaltexts-review": {
+                "costs": 1,
 				"title": "Review globale Texte",
 				"bonuses": ["ux","performance"]
 			},
 		"ui-ux": {
 			"title": "UI/UX Inhaltsverwaltung",
+            "bonuses": ["ux"],
 			"dependsOn": ["templates","publication"],
 			"costs": 10,
 		},
@@ -140,8 +123,27 @@ var techItems = {
 					},
 						"navigation": {
 							"title": "Navigation",
-							"dependsOn": [],
+							"dependsOn": ["v55"],
 							"bonuses": ["performance","ux","standards","clean-code"]
 						},
-				
+    "treats": {
+        "title":"Abbau Technischer Schulden",
+        "dependsOn": ["sq","ci","cd","ut"]
+    },
+    "sq": {
+        "title": "SonarQube",
+        "bonuses": ["stability","clean-code"]
+    },
+    "ci": {
+        "title": "Continuous Integration GitLab",
+        "bonuses": ["stability"]
+    },
+    "cd": {
+        "title": "Continuous Deployment",
+        "bonuses": ["performance"]
+    },
+    "ut": {
+        "title": "Unit Testing",
+        "bonuses": ["stability"]
+    },
 };
