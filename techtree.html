@@ -51,7 +51,7 @@
 				</div>
 				<div ng-if="techItem.leadsTo">
 					<div>Führt zu</div>
-					<ul class="list-group">
+					<ul class="list-group" ng-mouseover="showLeadsTo(techItem)" ng-mouseleave="showAll()">
 						<li class="list-group-item" ng-class="listItemClassForTechItem(value,false)" ng-repeat="(key, value) in techItem.leadsTo">{{value.title}}</li>
 					</ul>
 				</div>
