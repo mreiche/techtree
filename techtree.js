@@ -1,24 +1,5 @@
 angular.module('TechTree', [])
 .controller('TechTreeController', function($scope) {
-	function dependenciesSatisfied(techItem, techItems) {
-		if (techItem.dependsOn!==undefined) {
-			var i;
-			var dependency;
-			for (i in techItem.dependsOn) {
-				dependency = techItem.dependsOn[i];
-				if (techItems[dependency] !== undefined) {
-					var depTechItem = techItems[dependency];
-					if (depTechItem.leadsTo === undefined) {
-						depTechItem.leadsTo = {};
-					}
-					depTechItem.leadsTo[techItem.id] = techItem;
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-
 	$scope.listItemClassForTechItem = function(techItem, fullStatus) {
 		if ((techItem.progress===undefined || techItem.progress===0) && fullStatus === true) {
 			return 'list-group-item-danger';
@@ -51,8 +32,14 @@ angular.module('TechTree', [])
 		var techItem;
 		var i;
 
-		while (true) {
+		var s = 0;
+
+		while (s < 100) {
+		    ++s;
 			var dependencyGroup = [];
+			var dependenciesSatisfied;
+            var depTechItem;
+            var depTechItemId;
 			for (var techItemId in techItems) {
 				var techItemBonuses = [];
 				techItem = techItems[techItemId];
@@ -68,24 +55,38 @@ angular.module('TechTree', [])
 						techItem.bonuses = techItemBonuses;
 					}
 				}
-				if (dependenciesSatisfied(techItem, techItems)) {
+
+                dependenciesSatisfied = true;
+				if (techItem.dependsOn!==undefined) {
+				    if (techItem.dependencies===undefined) {
+				        techItem.dependencies = {};
+                    }
+                    for (i in techItem.dependsOn) {
+                        depTechItemId = techItem.dependsOn[i];
+                        if (dependenciesSatisfied===true) {
+                            dependenciesSatisfied = (solvedTechItems[depTechItemId] !== undefined);
+                        }
+
+                        depTechItem = techItems[depTechItemId];
+                        if (depTechItem===undefined) {
+                            console.log('dependency ' + depTechItemId + ' not defined');
+                        } else {
+                            if (depTechItem.leadsTo === undefined) {
+                                depTechItem.leadsTo = {};
+                            }
+                            depTechItem.leadsTo[depTechItemId] = techItem;
+                            techItem.dependencies[depTechItemId] = depTechItem;
+                        }
+                    }
+                }
+				if (dependenciesSatisfied) {
 					dependencyGroup.push(techItem);
-					var dependencies = {};
-					var numDependencies = 0;
-					var depTechItem;
-					for (i in techItem.dependsOn) {
-						depTechItem = solvedTechItems[techItem.dependsOn[i]];
-						if (depTechItem !== undefined) {
-							dependencies[depTechItem.id] = depTechItem;
-							++numDependencies;
-						} else {
-							console.log('dependency ' + techItem.dependsOn[i] + ' not defined');
-						}
-					}
-					if (numDependencies > 0) techItem.dependencies = dependencies;
 				}
 			}
-			if (dependencyGroup.length===0) break;
+			if (dependencyGroup.length===0) {
+			    console.log('break here');
+			    break;
+            }
 			techTree.push(dependencyGroup);
 			for (i in dependencyGroup) {
 				techItem = dependencyGroup[i];
