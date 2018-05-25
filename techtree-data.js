@@ -134,7 +134,7 @@ var techItems = {
 						},
     "treats": {
         "title":"Abbau Technischer Schulden",
-        "dependsOn": ["sq","ci","cd","ut"]
+        "dependsOn": ["sq","ut"]
     },
     "sq": {
         "title": "SonarQube",
@@ -144,12 +144,13 @@ var techItems = {
         "title": "Continuous Integration GitLab",
         "bonuses": ["stability"]
     },
-    "cd": {
+    /*"cd": {
         "title": "Continuous Deployment",
         "bonuses": ["performance"]
-    },
+    },*/
     "ut": {
         "title": "Unit Testing",
-        "bonuses": ["stability"]
+        "bonuses": ["stability"],
+        "dependsOn": ["ci"],
     },
 };
