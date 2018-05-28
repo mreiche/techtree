@@ -19,10 +19,12 @@
 	.panel.on-remove {
 	}
     .tech-step {
-        float:left;
+        vertical-align: top;
         margin-right:20px;
         background-color: darkgray;
         padding: 20px;
+        width: 340px;
+        display: inline-block;
     }
 </style>
 </head>
@@ -30,7 +32,7 @@
 <!--div class="container">
 <div class="row"-->
 <div ng-repeat="dependencyGroup in techTree" class="tech-step">
-    <h1>Step {{$index+1}}</h1>
+    <h2>Step {{$index+1}}</h2>
 	<div ng-repeat="techItem in dependencyGroup">
 		<div style="width:300px" class="panel panel-primary disabled" ng-class="{on:techItem.active}">
 			<div class="panel-heading">
