@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <style>
+    body {
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
 	.panel {
 		transition:0.4s ease all;
 		opacity:0.4;
@@ -39,26 +43,26 @@
 				<h3 class="panel-title panel-title">{{techItem.title}} <span ng-if="techItem.costs>0" class="badge">{{techItem.costs}}</span></h3>
 			</div>
 			<div class="panel-body">
-				<div>Fortschritt</div>
+				<div>Progress</div>
 				<div class="progress" ng-init="progress=techItem.progress*100">
 					  <div class="progress-bar progress-bar progress-bar-striped" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
 						<span>{{progress}}%</span>
 					  </div>
 				</div>
 				<div ng-if="techItem.bonuses.length>0">
-					<div>Boni</div>
+					<div>Achieves</div>
 					<ul class="list-group">
-						<li ng-repeat="bonus in techItem.bonuses" class="list-group-item list-group-item-success">{{bonus.title}}</li>
+						<li ng-repeat="bonus in techItem.bonuses" class="list-group-item" ng-class="(techItem.progress>=1?'list-group-item-success':'')">{{bonus.title}}</li>
 					</ul>
 				</div>
 				<div ng-if="techItem.leadsTo">
-					<div>Führt zu</div>
+					<div>Leads to</div>
 					<ul class="list-group" ng-mouseover="showLeadsTo(techItem)" ng-mouseleave="showAll()">
 						<li class="list-group-item" ng-class="listItemClassForTechItem(value,false)" ng-repeat="(key, value) in techItem.leadsTo">{{value.title}}</li>
 					</ul>
 				</div>
 				<div ng-if="techItem.dependencies">
-					<div>Hängt ab von</div>
+					<div>Depends on</div>
 					<ul class="list-group" ng-mouseover="showDependencies(techItem)" ng-mouseleave="showAll()">
 						<li class="list-group-item" ng-class="listItemClassForTechItem(value,true)" ng-repeat="(key, value) in techItem.dependencies">{{value.title}}</li>
 					</ul>

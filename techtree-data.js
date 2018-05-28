@@ -37,6 +37,7 @@ var bonuses = {
 var techItems = {
 	"v56": {
         "title":"myty 5.6 (Shop)",
+        "progress":0.6,
         "dependsOn": ["dsgvo", "v55"]
     },
 		"bundles": {
@@ -51,6 +52,7 @@ var techItems = {
 		},
 		"dsgvo": {
 			"title": "DSGVO",
+            "progress":0.9,
 			"bonuses": ["privacy"]
 		},
 		"article-ui": {
@@ -129,6 +131,7 @@ var techItems = {
 					},
 						"navigation": {
 							"title": "Navigation",
+                            "progress":0.2,
 							"dependsOn": ["v55"],
 							"bonuses": ["performance","ux","standards","clean-code"]
 						},
@@ -150,6 +153,7 @@ var techItems = {
     },*/
     "ut": {
         "title": "Unit Testing",
+        "progress":0.3,
         "bonuses": ["stability"],
         "dependsOn": ["ci"],
     },
